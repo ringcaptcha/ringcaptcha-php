@@ -55,7 +55,7 @@ class Ringcaptcha
         $server   = (($this->isSecure) ? 'https://' : 'http://')
             . self::RC_SERVER;
 
-        $resource = "/{$this->secretKey}/verify";
+        $resource = "/{$this->appKey}/verify";
 
         try {
             $response = $this->ringcaptchaVerifyRESTCall(
