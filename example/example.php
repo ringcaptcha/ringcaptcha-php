@@ -3,8 +3,8 @@
 require_once dirname(__FILE__) . '/../lib/Ringcaptcha.php';
 
 // Setup your keys
-$appKey     = '{your_public_app_key}';
-$secretkey  = '{your_secret_key}';
+$appKey     = '9uqiky8y5e9ynu7y9y9e';
+$secretkey  = 'qadu2ifu1ehi5u1eru1u';
 
 // Check for Ringcaptcha widget
 if (isset($_POST["ringcaptcha_session_id"])) {
@@ -19,6 +19,12 @@ if (isset($_POST["ringcaptcha_session_id"])) {
         $phoneNumber   = $ringcaptcha->getPhoneNumber();
         $transactionID = $ringcaptcha->getId();
         $geolocation   = $ringcaptcha->isGeolocated();
+        
+		$phoneType 	   = $ringcaptcha->getPhoneType();
+        $carrierName   = $ringcaptcha->getCarrierName();
+        
+        $deviceName    = $ringcaptcha->getDeviceName();
+        $ispName	   = $ringcaptcha->getIspName();
 
         $formPage      = basename(__FILE__);
 
@@ -75,7 +81,7 @@ if (isset($_POST["ringcaptcha_session_id"])) {
                 </li>
                 <li id="li_1" >
                     <!-- Paste here your widget code -->
-                    <!-- <script type='text/javascript' charset='UTF-8' src='https://api.ringcaptcha.com/widget/{your_app_key}'></script>-->
+                    <script type='text/javascript' charset='UTF-8' src='http://api.ringcaptcha.com/widget/9uqiky8y5e9ynu7y9y9e'></script>
                 </li>
                 <li class="buttons">
                     <input type="hidden" name="form_id" value="240153" />

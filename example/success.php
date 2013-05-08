@@ -24,6 +24,18 @@
                 <li class="section_break">
                     <label>Is Geolocated: <strong><?php echo ($geolocation) ? 'TRUE' : 'FALSE' ?></strong></label>
                 </li>
+                <li class="section_break">
+                    <label>Phone Type: <strong><?php echo ($phoneType) ? $phoneType : 'N/A' ?></strong></label>
+                </li>
+                <li class="section_break">
+                    <label>Carrier Name: <strong><?php echo ($carrierName) ? $carrierName : 'N/A' ?></strong></label>
+                </li>
+                <li class="section_break">
+                    <label>Device Name: <strong><?php echo ($deviceName) ? $deviceName : 'N/A' ?></strong></label>
+                </li>
+                <li class="section_break">
+                    <label>Isp Name: <strong><?php echo ($ispName) ? $ispName : 'N/A' ?></strong></label>
+                </li>
                 <ul>
                 <li class="section_break">
                     <label>Try Again: <strong><a href="<?php echo $formPage ?>"><?php echo $formPage ?></a></strong></label>

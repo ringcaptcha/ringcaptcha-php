@@ -29,6 +29,12 @@ class Ringcaptcha
     private $transactionID;
     private $phoneNumber;
     private $geolocation;
+    
+    private $phoneType;
+    private $carrierName;
+    
+    private $deviceName;
+    private $ispName;
 
 
     public function __construct($appKey, $secretKey)
@@ -82,6 +88,12 @@ class Ringcaptcha
         $this->phoneNumber = isset($jsonData['phone']) ? $jsonData['phone'] : false;
         $this->geolocation = isset($jsonData['geolocation']) ? $jsonData['geolocation'] : false;
         $this->message = isset($jsonData['message']) ? $jsonData['message'] : false;
+        
+        $this->phoneType = isset($jsonData['phone_type']) ? $jsonData['phone_type'] : false;
+        $this->carrierName = isset($jsonData['carrier']) ? $jsonData['carrier'] : false;
+        
+        $this->deviceName = isset($jsonData['device']) ? $jsonData['device'] : false;
+        $this->ispName = isset($jsonData['isp']) ? $jsonData['isp'] : false;
 
         return ($this->status == 1);
 
@@ -123,6 +135,26 @@ class Ringcaptcha
     {
         return $this->geolocation;
     }
+    
+    public function getPhoneType()
+    {
+		return $this->phoneType;
+	}
+	
+	public function getCarrierName()
+	{
+		return $this->carrierName;
+	}
+	
+	public function getDeviceName()
+	{
+		return $this->deviceName;
+	}
+	
+	public function getIspName()
+	{
+		return $this->ispName;
+	}
 
     private function sanitizeData(&$data)
     {
