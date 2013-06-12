@@ -3,8 +3,8 @@
 require_once dirname(__FILE__) . '/../lib/Ringcaptcha.php';
 
 // Setup your keys
-$appKey     = '9uqiky8y5e9ynu7y9y9e';
-$secretkey  = 'qadu2ifu1ehi5u1eru1u';
+$appKey     = 'XXXXXXXXXXXXXXXXXXXX';
+$secretkey  = 'YYYYYYYYYYYYYYYYYYYY';
 
 // Check for Ringcaptcha widget
 if (isset($_POST["ringcaptcha_session_id"])) {
@@ -81,7 +81,7 @@ if (isset($_POST["ringcaptcha_session_id"])) {
                 </li>
                 <li id="li_1" >
                     <!-- Paste here your widget code -->
-                    <script type='text/javascript' charset='UTF-8' src='http://api.ringcaptcha.com/widget/9uqiky8y5e9ynu7y9y9e'></script>
+                    <script type='text/javascript' charset='UTF-8' src='http://api.ringcaptcha.com/widget/XXXXXXXXXXXXXXXXXXXX'></script>
                 </li>
                 <li class="buttons">
                     <input type="hidden" name="form_id" value="240153" />
