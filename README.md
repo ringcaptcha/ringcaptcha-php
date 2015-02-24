@@ -7,4 +7,5 @@
 ## Getting Started
 
 ## Learn More
+
 - Read the [HTML & JS Guides](https://my.ringcaptcha.com/docs/web)

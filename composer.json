@@ -1,0 +1,37 @@
+{
+    "name": "ringcaptcha/ringcaptcha",
+    "type": "library",
+    "description": "A PHP module for communicating with the RingCaptcha API",
+    "keywords": ["verification", "onboarding", "gateway"],
+    "homepage": "http://ringcaptcha.com",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Diego Saint Esteben",
+            "email": "diego@saintesteben.me"
+        },
+        {
+            "name": "GitHub Community",
+            "homepage": "https://github.com/ringcaptcha/ringcaptcha-php/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": { "RingCaptcha\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "RingCaptcha\\Tests\\": "tests/" }
+    },
+    "suggest": {
+        "monolog/monolog": "Allows more advanced logging of the application flow"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
+}

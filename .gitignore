@@ -1,2 +1,4 @@
-lib/RingcaptchaForTesting.php
-lib/cacert.pem
+/vendor/
+phpunit.xml
+composer.lock
+composer.phar
