@@ -25,9 +25,6 @@
     "autoload-dev": {
         "psr-4": { "RingCaptcha\\Tests\\": "tests/" }
     },
-    "suggest": {
-        "monolog/monolog": "Allows more advanced logging of the application flow"
-    },
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
