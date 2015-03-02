@@ -26,6 +26,8 @@ if (isset($_POST["ringcaptcha_session_id"])) {
         $deviceName    = $ringcaptcha->getDeviceName();
         $ispName	   = $ringcaptcha->getIspName();
 
+        $referer = $ringcaptcha->getReferer();
+
         $formPage      = basename(__FILE__);
 
         require dirname(__FILE__) . '/success.php';

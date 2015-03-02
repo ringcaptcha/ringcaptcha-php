@@ -19,6 +19,9 @@
                     <label>Transaction ID: <strong><?php echo $transactionID ?></strong></label>
                 </li>
                 <li class="section_break">
+                    <label>Referer: <strong><?php echo ($referer) ? $referer : 'N/A' ?></strong></label>
+                </li>
+                <li class="section_break">
                     <label>Phone Number: <strong><?php echo $phoneNumber ?></strong></label>
                 </li>
                 <li class="section_break">

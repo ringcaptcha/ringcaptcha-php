@@ -36,6 +36,8 @@ class Ringcaptcha
     private $deviceName;
     private $ispName;
 
+    private $referer;
+
 
     public function __construct($appKey, $secretKey)
     {
@@ -94,6 +96,8 @@ class Ringcaptcha
         
         $this->deviceName = isset($jsonData['device']) ? $jsonData['device'] : false;
         $this->ispName = isset($jsonData['isp']) ? $jsonData['isp'] : false;
+
+        $this->referer = isset($jsonData['referer']) ? $jsonData['referer'] : false;
 
         return ($this->status == 1);
 
@@ -154,7 +158,12 @@ class Ringcaptcha
 	public function getIspName()
 	{
 		return $this->ispName;
-	}
+  }
+
+  public function getReferer()
+  {
+    return $this->referer;
+  }
 
     private function sanitizeData(&$data)
     {
