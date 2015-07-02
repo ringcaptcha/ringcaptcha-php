@@ -1,5 +1,3 @@
-lib/RingcaptchaForTesting.php
-lib/cacert.pem
 vendor/
 composer.lock
 composer.phar

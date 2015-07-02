@@ -1,10 +1,20 @@
-# PHP Library
+RingCaptcha PHP library
+=======================
 
-## Overview
+Library for communicating with the RingCaptcha API, which simplifies the onboarding and verification of users.
 
-`ringcaptcha/ringcaptcha-php` is a PHP module for communicating with the RingCaptcha API, which simplifies the Onboarding and Verification of Users
+Installation
+------------
 
-## Getting Started
+The recommended way to install the library is through [Composer](http://getcomposer.org/).
 
-## Learn More
-- Read the [HTML & JS Guides](https://my.ringcaptcha.com/docs/web)
+```bash
+$ composer require ringcaptcha/ringcaptcha-php:~1.0
+```
+
+Otherwise, install the library yourself.
+
+License
+-------
+
+This library is released under the Apache 2.0 license. See the bundled LICENSE file for details.

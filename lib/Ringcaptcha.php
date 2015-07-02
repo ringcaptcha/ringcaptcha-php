@@ -1,67 +1,46 @@
 <?php
 
-/**
- * Ringcaptcha class
- *
- * Provides simplified interaction with the Ringcaptcha verification REST API.
- *
- * @package Ringcaptcha
- * @author  Cristian Iturri <iturri.cf@gmail.com>
- * @license http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License
- * @link    http://ringcaptcha.com/
- */
 class Ringcaptcha
 {
-    const RC_SERVER     = 'api.ringcaptcha.com';
-    const USER_AGENT    = 'ringcaptcha-php/1.0';
+    const RC_SERVER = 'api.ringcaptcha.com';
+    const USER_AGENT = 'ringcaptcha-php/1.0';
 
-    private $version    = '1.0';
-
+    private $version = '1.0';
     private $isSecure;
-
     private $appKey;
     private $secretKey;
     private $retryAttempts;
-
     private $status;
     private $message;
-
     private $transactionID;
     private $phoneNumber;
     private $geolocation;
-    
     private $phoneType;
     private $carrierName;
-    
     private $deviceName;
     private $ispName;
-
     private $referer;
-
 
     public function __construct($appKey, $secretKey)
     {
-        $this->appKey           = $appKey;
-        $this->secretKey        = $secretKey;
-        $this->retryAttempts    = 0;
-        $this->isSecure         = true;
-        $this->status           = -1;
+        $this->appKey = $appKey;
+        $this->secretKey = $secretKey;
+        $this->retryAttempts = 0;
+        $this->isSecure = true;
+        $this->status = -1;
     }
 
     public function isValid($pinCode, $token)
     {
-        // @TODO: Check parameters
-
         $data = array(
             'secret_key' => $this->secretKey,
-            'token'      => $token,
-            'code'       => $pinCode,
+            'token' => $token,
+            'code' => $pinCode,
         );
 
         $this->sanitizeData($data);
 
-        $server   = (($this->isSecure) ? 'https://' : 'http://')
-            . self::RC_SERVER;
+        $server = ($this->isSecure ? 'https' : 'http').'://'.self::RC_SERVER;
 
         $resource = "/{$this->appKey}/verify";
 
@@ -90,33 +69,29 @@ class Ringcaptcha
         $this->phoneNumber = isset($jsonData['phone']) ? $jsonData['phone'] : false;
         $this->geolocation = isset($jsonData['geolocation']) ? $jsonData['geolocation'] : false;
         $this->message = isset($jsonData['message']) ? $jsonData['message'] : false;
-        
         $this->phoneType = isset($jsonData['phone_type']) ? $jsonData['phone_type'] : false;
         $this->carrierName = isset($jsonData['carrier']) ? $jsonData['carrier'] : false;
-        
         $this->deviceName = isset($jsonData['device']) ? $jsonData['device'] : false;
         $this->ispName = isset($jsonData['isp']) ? $jsonData['isp'] : false;
-
         $this->referer = isset($jsonData['referer']) ? $jsonData['referer'] : false;
 
-        return ($this->status == 1);
-
+        return $this->status === 1;
     }
 
     public function setSecure($secure)
     {
-        $this->isSecure = ($secure);
+        $this->isSecure = boolval($secure);
     }
 
     public function getStatus()
     {
         switch ($this->status) {
             case 1:
-                return "SUCCESS";
+                return 'SUCCESS';
             case 0:
-                return "ERROR";
+                return 'ERROR';
             default:
-                return "UNDEFINED";
+                return 'UNDEFINED';
         }
     }
 
@@ -139,31 +114,31 @@ class Ringcaptcha
     {
         return $this->geolocation;
     }
-    
+
     public function getPhoneType()
     {
-		return $this->phoneType;
-	}
-	
-	public function getCarrierName()
-	{
-		return $this->carrierName;
-	}
-	
-	public function getDeviceName()
-	{
-		return $this->deviceName;
-	}
-	
-	public function getIspName()
-	{
-		return $this->ispName;
-  }
+        return $this->phoneType;
+    }
 
-  public function getReferer()
-  {
-    return $this->referer;
-  }
+    public function getCarrierName()
+    {
+        return $this->carrierName;
+    }
+
+    public function getDeviceName()
+    {
+        return $this->deviceName;
+    }
+
+    public function getIspName()
+    {
+        return $this->ispName;
+    }
+
+    public function getReferer()
+    {
+        return $this->referer;
+    }
 
     private function sanitizeData(&$data)
     {
@@ -174,10 +149,10 @@ class Ringcaptcha
 
     private function ringcaptchaVerifyRESTCall($server, $resource, $data, $port = 80)
     {
-        $query      = http_build_query($data, '', '&');
-        $url        = $server . $resource;
+        $query = http_build_query($data, '', '&');
+        $url = $server.$resource;
 
-        $request    = curl_init($url);
+        $request = curl_init($url);
 
         if ($this->isSecure) {
             curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
@@ -192,7 +167,7 @@ class Ringcaptcha
         curl_setopt($request, CURLOPT_POSTFIELDS, $query);
         curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
 
-        $response   = curl_exec($request);
+        $response = curl_exec($request);
 
         if (!$response) {
             throw new Exception('ERROR_PROCESING_REQUEST');
