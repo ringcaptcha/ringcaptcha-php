@@ -2,38 +2,50 @@
 
 namespace RingCaptcha;
 
-use RingCaptcha\Adapter\AdapterInterface;
-use RingCaptcha\Adapter\CurlAdapter;
-use RingCaptcha\Exception\ExceptionFactory;
+use RingCaptcha\Exception\BadMethodCallException;
+use RingCaptcha\Exception\InvalidArgumentException;
+use RingCaptcha\HttpClient\HttpClientInterface;
 
 class Client
 {
+    const VERSION = '2.0.0-dev';
+
     private $options;
-    private $adapter;
+    private $httpClient;
 
-    public function __construct(array $options, AdapterInterface $adapter = null)
+    public function __construct(array $options, HttpClientInterface $httpClient = null)
     {
-        $this->options = $options;
-        $this->adapter = $adapter ?: new CurlAdapter();
+        $this->options = array_merge([], $options);
+        $this->httpClient = $httpClient;
     }
 
-    public function code($phone)
+    public function api($name)
     {
-        return new Token();
+        switch ($name) {
+            case 'verification':
+                # code...
+                break;
+            
+            default:
+                throw new InvalidArgumentException();
+        }
     }
 
-    public function verify(Token $token, $code)
+    public function getHttpClient()
     {
-        if (!is_numeric($code)) {
-            throw new InvalidCodeException();
+        if (null === $this->httpClient) {
+            $this->httpClient = 1;
         }
 
-        $now = new \DateTime();
+        return $this->httpClient;
+    }
 
-        if ($now > $token->getExpirationDate()) {
-
+    public function __call($name, $arguments)
+    {
+        try {
+            return $this->api($name);
+        } catch (InvalidArgumentException $e) {
+            throw new BadMethodCallException(sprintf('Undefined method called: "%s"', $name));
         }
-
-        throw ExceptionFactory::createFromResponse();
     }
 }
