@@ -16,14 +16,16 @@
         }
     ],
     "require": {
-        "php": ">=5.3.9",
-        "ext-curl": "*"
+        "php": ">=5.5.9",
+        "guzzlehttp/guzzle": "^6.0"
     },
     "autoload": {
-        "psr-4": { "RingCaptcha\\": "src/" }
-    },
-    "autoload-dev": {
-        "psr-4": { "RingCaptcha\\Tests\\": "tests/" }
+        "psr-4": {
+            "RingCaptcha\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "src/Tests/"
+        ]
     },
     "minimum-stability": "dev",
     "extra": {
